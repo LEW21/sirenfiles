@@ -1,0 +1,10 @@
+FROM arch-2016.03.09
+ID http.python 2016.03.09
+
+RUN pacman -S --noconfirm python-pip python-crypto
+RUN pip install gunicorn
+
+RUN mkdir /app
+
+ENABLE http.socket
+ENABLE http.service

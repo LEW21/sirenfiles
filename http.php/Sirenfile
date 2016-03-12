@@ -1,0 +1,23 @@
+FROM arch-2016.03.09
+ID http.php 2016.03.09
+
+RUN pacman -S --noconfirm git base-devel apr-util python2 php libxml2 php-sqlite php-pgsql
+
+RUN bash -c "mkdir /aur; chown http:http /aur"
+
+RUN su -s /bin/bash -c "cd /aur; git clone https://aur4.archlinux.org/apache25.git/; cd apache25; git clone git://github.com/apache/httpd.git; sed -i 's#git://git.apache.org/httpd.git#git://github.com/apache/httpd.git#' PKGBUILD; makepkg" http
+RUN bash -c "pacman -U --noconfirm /aur/apache25/apache25-*.pkg.tar.xz"
+
+RUN su -s /bin/bash -c "cd /aur; git clone https://aur4.archlinux.org/php-apache25.git/; cd php-apache25; makepkg --skippgpcheck" http
+RUN bash -c "pacman -U --noconfirm /aur/php-apache25/php-apache25-*.pkg.tar.xz"
+
+RUN rm -Rf /etc/httpd
+COPY etc/httpd /etc/
+
+RUN rm -Rf /etc/php
+COPY etc/php /etc/
+
+RUN mkdir /app
+
+ENABLE httpd.socket
+ENABLE httpd.service

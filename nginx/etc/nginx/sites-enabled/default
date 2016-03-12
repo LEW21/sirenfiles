@@ -1,0 +1,6 @@
+server {
+	listen [::]:80 ipv6only=off default_server;
+	root /srv/http;
+
+	client_max_body_size 10m;
+}

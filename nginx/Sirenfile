@@ -1,0 +1,9 @@
+FROM arch-2016.03.09
+ID nginx 2016.03.09
+
+RUN pacman -S --noconfirm nginx
+RUN rm -Rf /etc/nginx
+COPY etc/nginx /etc/
+COPY srv/http /srv/
+
+ENABLE nginx

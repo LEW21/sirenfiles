@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn HTTP Server
+After=network.target http.socket
+Requires=http.socket
+
+[Service]
+User=http
+WorkingDirectory=/app
+EnvironmentFile=-/app/conf
+ExecStart=/usr/bin/gunicorn wsgi
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+Also=http.socket

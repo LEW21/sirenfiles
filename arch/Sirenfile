@@ -1,0 +1,10 @@
+#ID arch `date +%Y.%m.%d`
+ID arch 2016.03.09
+
+UNTAR archbase.tar /
+
+COPY pacman.conf /etc
+
+COPY setup.sh /
+RUN sh /setup.sh 2016.03.09
+RUN rm /setup.sh
