@@ -1,5 +1,5 @@
-FROM arch-2016.03.09
 ID http.php 2016.03.09
+FROM arch-2016.03.09 git+https://github.com/LEW21/sirenfiles.git#arch
 
 RUN pacman -S --noconfirm git base-devel apr-util python2 php libxml2 php-sqlite php-pgsql
 
