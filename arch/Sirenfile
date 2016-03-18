@@ -1,7 +1,7 @@
 #ID arch `date +%Y.%m.%d`
 ID arch 2016.03.09
 
-UNTAR archlinux-bootstrap-2016.03.01-x86_64.tar.gz:root.x86_64 /
+UNTAR http://mirror.rackspace.com/archlinux/iso/2016.03.01/archlinux-bootstrap-2016.03.01-x86_64.tar.gz#root.x86_64 /
 
 COPY pacman.conf /etc
 
